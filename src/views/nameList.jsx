@@ -7,7 +7,9 @@ import Cards from '../components/Cards/Cards'
 
 
 class nameList extends Component {
+
   render() {
+
     return (
        <Cards></Cards>
     );
