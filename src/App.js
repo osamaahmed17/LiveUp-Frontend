@@ -6,6 +6,7 @@ import Footers from './components/footer'
 import NameList from './views/nameList'
 import { BrowserRouter, Switch, Route} from 'react-router-dom';
 import LoadingComponent from './components/loading/loading'
+import Login from './views/login/login'
 
 
 class App extends Component {
@@ -40,11 +41,10 @@ class App extends Component {
           <Headers/>
           <BrowserRouter>
           <Switch>
-            <Route path="/" render={(...props) => <NameList name={this.state.data}/>} /> 
 
+          <Route path="/login" component={Login} />
 
-           
-          />
+          <Route path="/" render={(...props) => <NameList name={this.state.data}/>} /> />
 
 
           </Switch>

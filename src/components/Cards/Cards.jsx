@@ -8,13 +8,11 @@ class nameList extends Component {
         return (
             <div>
                 <div className="row">
-                    <div className="col s12 m3">
+                    <div className="col s12 m6">
                         <div className="card">
-                            <div className="card-image">
-                                <span className="card-title">Card Title</span>
-                            </div>
+                            
                             <div className="card-content">
-                                <p>I am just a randomn Card</p>
+                                <p>{this.props.data.username}</p>
                             </div>
                             <div className="card-action">
                                 <a href="#">This is a link</a>

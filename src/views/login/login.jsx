@@ -3,12 +3,7 @@ import 'materialize-css/dist/css/materialize.min.css'
 import 'materialize-css/dist/js/materialize.min.js'
 
 class Login extends Component {
-  constructor(props){
-    super(props)
-    this.state={
-      
-    }
-  }
+
   render() {
 
 
@@ -38,4 +33,4 @@ class Login extends Component {
   }
 }
 
-export default Cards;
+export default Login;
