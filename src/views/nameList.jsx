@@ -6,14 +6,14 @@ import Cards from '../components/Cards/Cards'
 
 
 
-class nameList extends Component {
+class NameList extends Component {
 
   render() {
-    console.log(this.props.users)
+    console.log(this.props.name)
     return (
        <Cards></Cards>
     );
   }
 }
 
-export default nameList;
+export default NameList;

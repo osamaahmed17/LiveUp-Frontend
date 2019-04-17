@@ -3,7 +3,7 @@ import axios from 'axios';
 import './App.css';
 import Headers from './components/header'
 import Footers from './components/footer'
-import nameList from './views/nameList'
+import NameList from './views/nameList'
 import { BrowserRouter, Switch, Route} from 'react-router-dom';
 import LoadingComponent from './components/loading/loading'
 
@@ -14,6 +14,7 @@ class App extends Component {
 
     this.state = {
       data: null,
+      data2:'hello'
     };
   }
 
@@ -31,7 +32,7 @@ class App extends Component {
   render() {
     if(this.state.data==null)
     return (<LoadingComponent />);
-    console.log(this.state.data)
+
     return (
       
       <div className="App">
@@ -39,7 +40,13 @@ class App extends Component {
           <Headers/>
           <BrowserRouter>
           <Switch>
-               <Route exact path="/" component={nameList} users={this.state.data}/>
+            <Route path="/" render={(...props) => <NameList name={this.state.data}/>} /> 
+
+
+           
+          />
+
+
           </Switch>
           <Footers/>
           </BrowserRouter>
