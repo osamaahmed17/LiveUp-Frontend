@@ -3,8 +3,8 @@ import axios from 'axios';
 import './App.css';
 import Headers from './components/header'
 import Footers from './components/footer'
-import nameList from './views/nameList/nameList'
-import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import nameList from './views/nameList'
+import { BrowserRouter, Switch, Route} from 'react-router-dom';
 
 
 class App extends Component {
@@ -25,9 +25,6 @@ class App extends Component {
        .catch(function (error) {
           console.log(error);
        });
-
-       
-
   }
   
   render() {
@@ -35,12 +32,12 @@ class App extends Component {
     return (
       <div className="App">
           <Headers/>
+          <BrowserRouter>
           <Switch>
-            <Route path='/'>
-                <Route path='/home' component={Home} />
-            </Route>
+               <Route exact path="/" component={nameList} />
           </Switch>
           <Footers/>
+          </BrowserRouter>
       </div>
     );
   }
