@@ -31,7 +31,9 @@ class App extends Component {
   render() {
     if(this.state.data==null)
     return (<LoadingComponent />);
+    console.log(this.state.data)
     return (
+      
       <div className="App">
     
           <Headers/>

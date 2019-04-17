@@ -9,7 +9,7 @@ import Cards from '../components/Cards/Cards'
 class nameList extends Component {
 
   render() {
-
+    console.log(this.props.users)
     return (
        <Cards></Cards>
     );
