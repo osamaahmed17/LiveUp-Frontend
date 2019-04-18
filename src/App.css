@@ -49,3 +49,27 @@
   width:auto;
   height:60px;
 }
+
+/*--Dashboard---*/
+
+.dashboard-container{
+padding:50px;
+}
+
+.cardimg{
+  width:150px;
+  height:150px;
+  margin:10px auto;
+}
+
+.dash-card-btn a{
+  margin:10px;
+}
+
+.dash-btn{
+  margin: 0 auto;
+}
+.dash-btn a{
+  margin:10px;
+}
+

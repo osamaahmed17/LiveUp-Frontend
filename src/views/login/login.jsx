@@ -4,6 +4,8 @@ import 'materialize-css/dist/js/materialize.min.js'
 import 'bootstrap/dist/css/bootstrap.css';
 import { Form,Button } from 'react-bootstrap';
 import '../../App.css';
+import { Link } from 'react-router-dom'
+
 
 class Login extends Component {
 
@@ -16,6 +18,9 @@ class Login extends Component {
             <Form>
             
               <Form.Group controlId="loginType">
+                <div class="form-header">
+                Login
+                </div>
                 <Form.Control as="select">
                   <option>---LoginType---</option>
                   <option>Admin</option>
@@ -30,11 +35,15 @@ class Login extends Component {
               </Form.Group>
               <div class="row">
                 <div class="col-lg-4">
-                  <Button variant="success" className="text-capitalize">Signup</Button>
+                  <Link to="/signup">
+                    <Button variant="success" className="text-capitalize">Signup</Button>
+                  </Link>
                 </div>
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4">
-                  <Button  variant="danger" type="submit" className="text-capitalize">Login</Button>
+                  <Link to="/dashboard">
+                    <Button  variant="danger" type="submit" className="text-capitalize">Login</Button>
+                  </Link>
                 </div>
               </div>
             </Form>
