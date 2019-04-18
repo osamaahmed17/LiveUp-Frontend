@@ -21,6 +21,7 @@ class DashboardCard extends Component {
                             
                         </div>
                         <div className="card-content">
+                        <h5>hi</h5>
                             <ul>
                                <li> <p><b>Username:</b>{this.props.data.username}</p></li>
                                <li><p><b>First Name:</b>{this.props.data.firstname}</p></li>
