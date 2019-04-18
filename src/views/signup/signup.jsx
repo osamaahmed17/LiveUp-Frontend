@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import 'materialize-css/dist/css/materialize.min.css'
 import 'materialize-css/dist/js/materialize.min.js'
 import 'bootstrap/dist/css/bootstrap.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import { Form,Button } from 'react-bootstrap';
 import '../../App.css';
 
@@ -14,9 +14,7 @@ class Login extends Component {
         <div class="col-lg-4"></div>
         <div class="col-lg-4 myform">
             <Form>
-                <div class="form-header">
-                    <FontAwesomeIcon icon="lock" />Signup
-                </div>
+              
                 <Form.Group controlI="username">
                     <Form.Control type="text" placeholder="Username" />
                 </Form.Group>
