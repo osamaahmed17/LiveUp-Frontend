@@ -17,7 +17,7 @@ class DashboardCard extends Component {
                     <div className="card">
                         <div className="card-image">
                             <img src={imran} />
-
+                            
                             
                         </div>
                         <div className="card-content">

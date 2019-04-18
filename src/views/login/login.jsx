@@ -14,7 +14,9 @@ class Login extends Component {
           <div class="col-lg-4"></div>
           <div class="col-lg-4 myform">
             <Form>
-            
+              <div class="form-header">
+             
+              </div>
               <Form.Group controlId="loginType">
                 <Form.Control as="select">
                   <option>---LoginType---</option>
