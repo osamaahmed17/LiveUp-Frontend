@@ -9,6 +9,7 @@ import LoadingComponent from './components/loading/loading'
 import Login from './views/login/login'
 import Signup from './views/signup/signup'
 import Dashboard from './views/dashboard'
+import Favicon from 'react-favicon';
 
 
 
@@ -45,7 +46,7 @@ class App extends Component {
 
       <div className="App">
 
-          
+<Favicon url="" />
         
         <Headers />
         <BrowserRouter>
