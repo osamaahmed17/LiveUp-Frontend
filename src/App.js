@@ -7,6 +7,7 @@ import NameList from './views/nameList'
 import { BrowserRouter, Switch, Route} from 'react-router-dom';
 import LoadingComponent from './components/loading/loading'
 import Login from './views/login/login'
+import Signup from './views/signup/signup'
 
 
 class App extends Component {
@@ -43,6 +44,7 @@ class App extends Component {
           <Switch>
 
           <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
 
           <Route path="/" render={(...props) => <NameList name={this.state.data}/>} /> />
 

@@ -1,7 +1,6 @@
 .App {
   text-align: center;
 }
-
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
@@ -17,6 +16,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+
 }
 
 .App-link {
@@ -30,4 +30,22 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/*---forms---*/
+
+.myform{
+  width:100%;
+    height:100%;
+    border: 1px solid #CCC;
+    padding: 20px 50px;
+    box-shadow: 5px 5px 15px #888888;
+    margin:90px 0 90px 0;
+}
+.form-header{
+  text-align: center;
+  color:#CCC;
+  font-size:17px;
+  width:auto;
+  height:60px;
 }
