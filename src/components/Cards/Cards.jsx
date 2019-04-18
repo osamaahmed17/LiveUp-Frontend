@@ -8,14 +8,15 @@ class nameList extends Component {
         return (
             <div>
                 <div className="row">
-                    <div className="col s12 m6">
+                    <div className="col s12 m3">
                         <div className="card">
-                            
                             <div className="card-content">
+                                <p>{this.props.data._id}</p>
                                 <p>{this.props.data.username}</p>
-                            </div>
-                            <div className="card-action">
-                                <a href="#">This is a link</a>
+                                <p>{this.props.data.firstname}</p>
+                                <p>{this.props.data.lastname}</p>
+                                <p>{this.props.data.country}</p>
+                                <p>{this.props.data.usertype}</p>
                             </div>
                         </div>
                     </div>
