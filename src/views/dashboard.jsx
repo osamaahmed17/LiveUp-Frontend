@@ -2,23 +2,14 @@ import React, { Component } from 'react';
 
 import 'materialize-css/dist/css/materialize.min.css'
 import 'materialize-css/dist/js/materialize.min.js'
-import Panel from '../components/Panel/Panel'
-import M from 'materialize-css'; 
+import DashboardCard from '../components/dashboardcard'
 
 
 
 class Dashboard extends Component {
-    componentDidMount() {
-       // M.AutoInit();
-       var elems = document.querySelectorAll('.collapsible');
-       M.Collapsible.init(elems, {accordion:true});
-           
-    
-    }
+  
     render() {
-        const divStyle = {
-            margin:"20px"
-          };
+      
 
         return (
            
@@ -27,7 +18,7 @@ class Dashboard extends Component {
                     {this.props.name.map((value, key) => {
                         return (
                             <div>
-                                <Panel key={value._id} data={value}/>
+                                <DashboardCard key={value._id} data={value}/>
                             </div>
                         )
 
