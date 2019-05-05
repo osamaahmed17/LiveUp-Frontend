@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import 'materialize-css/dist/css/materialize.min.css'
 import 'materialize-css/dist/js/materialize.min.js'
-import M from 'materialize-css';
 import 'bootstrap/dist/css/bootstrap.css';
 import user from '../images/user.ico';
 
@@ -15,7 +14,7 @@ class DashboardCard extends Component {
         return (
 
             
-            <div class="container">
+            <div className="container">
                     <div className="card dashcard">
                         <div className="card-image cardimg">
                             <img src={user} />
@@ -31,7 +30,7 @@ class DashboardCard extends Component {
                                <li><p><b>Country:</b>{this.props.data.country}</p></li>
                             </ul>
                         </div>
-                        <div class="dash-card-btn">
+                        <div className="dash-card-btn">
                         <a className="btn-floating btn-large waves-effect waves-light blue"><i className="material-icons">edit</i></a>
                         <a className="btn-floating btn-large waves-effect waves-light red"><i className="material-icons">delete</i></a>
                         </div>

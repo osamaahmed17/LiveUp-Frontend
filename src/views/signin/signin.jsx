@@ -10,10 +10,9 @@ import 'materialize-css/dist/css/materialize.min.css'
 import 'materialize-css/dist/js/materialize.min.js'
 import 'bootstrap/dist/css/bootstrap.css'
 
-
-class Signup extends Component {
+class Signin extends Component {
   onSubmit = formProps => {
-    this.props.signup(formProps, () => {
+    this.props.signin(formProps, () => {
       this.props.history.push('/dashboard');
     });
   };
@@ -22,39 +21,43 @@ class Signup extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <div className="Signup">
+      <div className="Login">
         <div className="row">
           <div className="col-lg-4"></div>
           <div className="col-lg-4 myform">
             <Form onSubmit={handleSubmit(this.onSubmit)}>
-              <div className="form-header">
-                Signup
+              <Form.Group controlId="loginType">
+                <div className="form-header">
+                  Login
               </div>
+                <Form.Control as="select">
+                  <option>---LoginType---</option>
+                  <option>Admin</option>
+                  <option>User</option>
+                </Form.Control>
+              </Form.Group>
               <Form.Group controlId="username">
                 <Field name="username" type="text" component="input" autoComplete="none" placeholder="Username"/>
               </Form.Group>
               <Form.Group controlId="password">
                 <Field name="password" type="password" component="input" autoComplete="none" placeholder="Password"/>
               </Form.Group>
-              <Form.Group controlId="FullName">
-                <Field name="fullname" type="text" component="input" autoComplete="none" placeholder="FullName"/>
-              </Form.Group>
-              <Form.Group controlId="country">
-                <Field name="country" type="text" component="input" autoComplete="none" placeholder="Country"/>
-              </Form.Group>
+              <div>{this.props.errorMessage}</div>
               <div className="row">
+                
                 <div className="col-lg-4">
-                  <Link to="/signin">
-                    <Button variant="success" className="text-capitalize">LOGIN</Button>
+                  <Link to="/signup">
+                    <Button variant="success" className="text-capitalize">SIGNUP</Button>
                   </Link>
                 </div>
                 <div className="col-lg-4"></div>
                 <div className="col-lg-4">
-                <Button variant="danger" type='submit'>Signup</Button>
+                  <Button variant="danger" type='submit'>LOGIN</Button>
                 </div>
               </div>
             </Form>
           </div>
+          <div className="col-lg-4"></div>
         </div>
       </div>
     );
@@ -67,5 +70,5 @@ function mapStateToProps(state) {
 
 export default compose(
   connect(mapStateToProps, actions),
-  reduxForm({ form: 'signup' })
-)(Signup)
+  reduxForm({ form: 'signin' })
+)(Signin);
