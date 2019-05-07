@@ -14,7 +14,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 import reducers from './reducers'
-
+const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
 const store = createStore(
   reducers,
@@ -33,9 +33,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-
     var self = this;
-    axios.get('https://liveup.mybluemix.net/users')
+    axios.get(proxyurl+'https://liveup.mybluemix.net/users')
       .then(function (response) {
         self.setState({ data: response.data })
       })
@@ -50,7 +49,7 @@ class App extends Component {
   render() {
     if (this.state.data == null)
       return (<LoadingComponent />);
-
+    console.log(this.state.data)
     return (
       <Provider store={store}>
         <div className="App">

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { createHashHistory } from 'history'
+
 
 
 export default ChildComponent => {
@@ -16,7 +18,13 @@ export default ChildComponent => {
 
     shouldNavigateAway() {
       if (!this.props.auth) {
-        this.props.history.push('/');
+        if(!this.props.history){
+          const history = createHashHistory()
+          history.goBack()
+        }
+        else{
+          this.props.history.push('/');
+        }
        
       }
     }

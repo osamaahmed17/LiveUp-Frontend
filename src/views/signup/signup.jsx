@@ -14,6 +14,8 @@ import 'bootstrap/dist/css/bootstrap.css'
 class Signup extends Component {
   onSubmit = formProps => {
     this.props.signup(formProps, () => {
+     
+      this.props.history.push('/namelist');
       this.props.history.push('/dashboard');
     });
   };
@@ -42,6 +44,7 @@ class Signup extends Component {
               <Form.Group controlId="country">
                 <Field name="country" type="text" component="input" autoComplete="none" placeholder="Country"/>
               </Form.Group>
+              <div>{this.props.errorMessage}</div>
               <div className="row">
                 <div className="col-lg-4">
                   <Link to="/signin">

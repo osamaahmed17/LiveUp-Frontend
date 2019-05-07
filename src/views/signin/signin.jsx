@@ -11,9 +11,12 @@ import 'materialize-css/dist/js/materialize.min.js'
 import 'bootstrap/dist/css/bootstrap.css'
 
 class Signin extends Component {
+
   onSubmit = formProps => {
     this.props.signin(formProps, () => {
+      this.props.history.push('/namelist');
       this.props.history.push('/dashboard');
+     
     });
   };
 

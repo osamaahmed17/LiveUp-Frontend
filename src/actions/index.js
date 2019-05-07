@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { AUTH_USER, AUTH_ERROR } from './type';
+const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
 export const signup = (formProps, callback) => async dispatch => {
   try {
-    const response = await axios.post(
+    const response = await axios.post(proxyurl+
       'https://liveup.mybluemix.net/users/signup',
       formProps
     );
@@ -18,13 +19,14 @@ export const signup = (formProps, callback) => async dispatch => {
 
 export const signin = (formProps, callback) => async dispatch => {
   try {
-    const response = await axios.post(
+    const response = await axios.post(proxyurl+
       'https://liveup.mybluemix.net/users/signin',
       formProps
     );
-
-    dispatch({ type: AUTH_USER, payload: response.data.token });
+    
+    dispatch({ type: AUTH_USER, payload: response.data.token});
     localStorage.setItem('token', response.data.token);
+    localStorage.setItem('user',formProps.username)
     callback();
   } catch (e) {
     dispatch({ type: AUTH_ERROR, payload: 'Invalid login credentials' });

@@ -33,7 +33,7 @@ class nameList extends Component {
             <div>
                 <div id="modal1" className="modal">
                     <div className="modal-content">
-                       <VideoComponent username={this.props.data.username} twiliotoken={this.props.data.twilioToken}/>
+                       {/* <VideoComponent username={this.props.data.username} twiliotoken={this.props.data.twilioToken}/> */}
                     </div>
                     <div className="modal modal-fixed-footer">
                         <a href="#!" className="modal-close waves-effect waves-green btn-flat">Close</a>
