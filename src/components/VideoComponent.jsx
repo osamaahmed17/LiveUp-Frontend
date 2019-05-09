@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Video from "twilio-video";
+import '../App.css'
 
 
 /*  
@@ -55,8 +56,8 @@ export default class VideoComponent extends Component {
         );
 
 
-        console.log(this.props.username);
-        console.log(this.props.twiliotoken);
+        console.log("hello"+this.props.username);
+        console.log("my token"+this.props.twiliotoken);
         this.identity = this.props.username;
         this.refs.roomControls.style.display = "block";
         this.roomName = "Room";
@@ -184,7 +185,7 @@ export default class VideoComponent extends Component {
                 <div id="controls">
                     <div id="preview">
 
-                        <div ref="localMedia" id="local-media"></div>
+                        <div ref="localMedia" id="local-media" className="myvideo"></div>
 
                     </div>
                     <div ref="roomControls">

@@ -48,7 +48,10 @@ class Dashboard extends Component {
        
     }
    
+    
     onSubmit(e) {
+        console.log("clear all");
+        document.getElementById("add-form").reset();
         var self = this;
         e.preventDefault();
         axios.post('https://liveup.mybluemix.net/users/signup', {
@@ -79,7 +82,8 @@ class Dashboard extends Component {
             <div >
                 <h1><b>Welcome</b> {localStorage.getItem('user')}</h1>
                 <div className="List" >
-                    {this.state.name.map((value, key) => {
+                <div className="row">
+                        {this.state.name.map((value, key) => {
                         return (
                             <div className="col-lg-4">
                                 <DashboardCard key={value.username} data={value} />
@@ -87,21 +91,22 @@ class Dashboard extends Component {
                         )
                     }
                     )}
+                    </div>
                 </div>
                 <div className="row">
                     <div className="dash-btn">
-                        <a className="btn-floating btn-large waves-effect waves-light blue modal-trigger" href="#modal1"><i className="material-icons">add</i></a>
+                        <a className="btn-floating btn-large waves-effect waves-light blue modal-trigger" href="#addmodal"><i className="material-icons">add</i></a>
                         <Link to="/namelist">
                             <a className="btn-floating btn-large waves-effect waves-light green"><i className="material-icons">call</i></a>
                         </Link>
                     </div>
                 </div>
-                <div id="modal1" className="modal">
+                <div id="addmodal" className="modal">
                     <div className="modal-content">
                         <div className="Add">
                             <div className="row">
                                 <div className="col-lg-4"></div>
-                                <Form  onSubmit={this.onSubmit}>
+                                <Form  onSubmit={this.onSubmit} id="add-form">
                                     <div className="form-header">
                                         Add User
                                         </div>
@@ -111,7 +116,7 @@ class Dashboard extends Component {
                                             <Form.Control type="text" placeholder="Country" className="country" onChange={this.handleChangeCountry} />
                                         <div className="row">
                                         <div className="col-lg-12">
-                                            <Button variant="primary" type="submit"  className="text-capitalize">Add</Button>
+                                            <Button variant="primary" type="submit" className="text-capitalize modal-close">Add</Button>
                                           
                                         </div>
                                     </div>
