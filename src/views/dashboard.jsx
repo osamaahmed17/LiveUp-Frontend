@@ -80,15 +80,11 @@ class Dashboard extends Component {
     render() {
         return (
             <div >
-
+<div>
                 <h1><b>Welcome</b> {localStorage.getItem('user')}</h1>
                 <div className="List" >
                 <div className="row">
-<<<<<<< HEAD
                         {this.state.name.map((value, key) => {
-=======
-                    {this.state.name.map((value, key) => {
->>>>>>> 3b42bec2d61678e7d5776d2852ff56230df0c4f7
                         return (
                             <div className="col-lg-4">
                                 <DashboardCard key={value.username} data={value} />
@@ -133,6 +129,7 @@ class Dashboard extends Component {
                     </div>
                 </div>
             </div>
+         
         );
     }
 }

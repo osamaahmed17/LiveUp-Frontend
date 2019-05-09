@@ -14,12 +14,9 @@ class NameList extends Component {
   console.log(this.props.name)
     return (
       <div className="nameList">
-<<<<<<< HEAD
         <h1><b>Welcome</b>{localStorage.getItem('user')}</h1>
         <div className="container">
         <div className="row">
-=======
->>>>>>> 3b42bec2d61678e7d5776d2852ff56230df0c4f7
         {this.props.name.map((value,key) => {
           return (
             <div className="col-lg-4">
