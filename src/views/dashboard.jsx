@@ -77,8 +77,10 @@ class Dashboard extends Component {
     render() {
         return (
             <div >
+
                 <h1><b>Welcome</b> {localStorage.getItem('user')}</h1>
                 <div className="List" >
+                <div className="row">
                     {this.state.name.map((value, key) => {
                         return (
                             <div className="col-lg-4">
@@ -87,6 +89,7 @@ class Dashboard extends Component {
                         )
                     }
                     )}
+                </div>
                 </div>
                 <div className="row">
                     <div className="dash-btn">

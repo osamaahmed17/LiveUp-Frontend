@@ -10,11 +10,9 @@ import Cards from '../components/Cards'
 class NameList extends Component {
 
   render() {
-  //  console.log(this.props.name)
+  console.log(this.props.name)
     return (
-    
       <div className="nameList">
-        <h1><b>Welcome</b>{localStorage.getItem('user')}</h1>
         {this.props.name.map((value,key) => {
           return (
             <div>
