@@ -53,9 +53,7 @@ class nameList extends Component {
                         <Button variant="secondary" onClick={this.handleClose}>
                             Close
                    </Button>
-                        <Button variant="primary" onClick={this.handleClose}>
-                            Save Changes
-                    </Button>
+                       
                     </Modal.Footer>
                 </Modal>
                 <div className="row">
