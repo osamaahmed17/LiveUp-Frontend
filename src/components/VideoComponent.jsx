@@ -39,9 +39,6 @@ export default class VideoComponent extends Component {
 
         var localTracksPromise = this.previewTracks ? Promise.resolve(this.previewTracks) : Video.createLocalTracks();  // //If the condition is true , than "?" => {{Condition}}
 
-        /*A LocalTrack represents audio or video that your Client is sending to a Room.
-         As such, it can be enabled and disabled with LocalTrack#enable and LocalTrack#disable or stopped completely with LocalTrack#stop. */
-
         localTracksPromise.then(
             (tracks) => {
                 window.previewTracks = this.previewTracks = tracks;        //than the video container would  be shown at the track otherwise new 
@@ -56,8 +53,15 @@ export default class VideoComponent extends Component {
         );
 
 
+<<<<<<< HEAD
         console.log("hello"+this.props.username);
         console.log("my token"+this.props.twiliotoken);
+=======
+      
+
+
+
+>>>>>>> 3b42bec2d61678e7d5776d2852ff56230df0c4f7
         this.identity = this.props.username;
         this.refs.roomControls.style.display = "block";
         this.roomName = "Room";
@@ -68,8 +72,9 @@ export default class VideoComponent extends Component {
         if (this.previewTracks) {
             connectOptions.tracks = this.previewTracks;
         }
+        console.log("hitler"+this.props.twiliotoken)
         Video.connect(this.props.twiliotoken, connectOptions).then(function (result) {
-            // console.log(result)
+          
         });
 
         this.refs.buttonLeave.onclick = () => {
@@ -114,7 +119,7 @@ export default class VideoComponent extends Component {
         this.activeRoom = room;
         window.room = room.name;
 
-        this.log("Joined as '" + this.identity + "'");
+        this.log("Joined as '" + "insha"+ "'");
         this.refs.buttonJoin.style.display = "none";
         this.refs.buttonLeave.style.display = "inline";
 
@@ -126,32 +131,32 @@ export default class VideoComponent extends Component {
 
         // Attach the Tracks of the Room's Participants.
         room.participants.forEach((participant) => {
-            this.log("Already in Room: '" + participant.identity + "'");
+            this.log("Already in Room: '" + "insha" + "'");
             var previewContainer = document.getElementById("remote-media");
             this.attachParticipantTracks(participant, previewContainer);
         });
 
         // When a Participant joins the Room, log the event.
         room.on("participantConnected", (participant) => {
-            this.log("Joining: '" + participant.identity + "'");
+            this.log("Joining: '" + "insha" + "'");
         });
 
         // When a Participant adds a Track, attach it to the DOM.
         room.on("trackAdded", (track, participant) => {
-            this.log(participant.identity + " added track: " + track.kind);
+            this.log("insha" + " added track: " + track.kind);
             var previewContainer = document.getElementById("remote-media");
             this.attachTracks([track], previewContainer);
         });
 
         // When a Participant removes a Track, detach it from the DOM.
         room.on("trackRemoved", (track, participant) => {
-            this.log(participant.identity + " removed track: " + track.kind);
+            this.log("insha" + " removed track: " + track.kind);
             this.detachTracks([track]);
         });
 
         // When a Participant leaves the Room, detach its Tracks.
         room.on("participantDisconnected", (participant) => {
-            this.log("Participant '" + participant.identity + "' left the room");
+            this.log("Participant '" + "insha" + "' left the room");
             this.detachParticipantTracks(participant);
         });
 
@@ -184,13 +189,15 @@ export default class VideoComponent extends Component {
                 <div id="remote-media"></div>
                 <div id="controls">
                     <div id="preview">
+<<<<<<< HEAD
 
                         <div ref="localMedia" id="local-media" className="myvideo"></div>
 
+=======
+                        <div ref="localMedia" id="local-media"></div>
+>>>>>>> 3b42bec2d61678e7d5776d2852ff56230df0c4f7
                     </div>
                     <div ref="roomControls">
-
-
                         <button ref="buttonLeave" id="button-leave">Leave Room</button>
                     </div>
                     <div ref="log" id="log"></div>

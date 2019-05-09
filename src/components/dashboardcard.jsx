@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import user from '../images/user.ico';
 import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
+import dashboard from '../views/dashboard';
 
 
 
@@ -81,14 +82,24 @@ class DashboardCard extends Component {
                         </ul>
                     </div>
                     <div className="dash-card-btn">
+<<<<<<< HEAD
                         <div className="row">
                         <Form onSubmit={this.onSubmit} className="col-lg-6">
                             <Button variant="primary" type="submit" className="btn-floating btn-large waves-effect waves-light red"><i className="material-icons">delete</i></Button>
                         </Form>
                         <Form onSubmit={this.onSubmit} className="col-lg-6">
                             <Button variant="primary" type="submit" className="btn-floating btn-large waves-effect waves-light blue btn modal-trigger" data-target="updatemodal"><i className="material-icons">edit</i></Button>
+=======
+                    <div className="row">
+                        <Form onSubmit={this.onSubmit} className="col-lg-6">
+                            <Button variant="primary" type="submit" className="btn-floating btn-large waves-effect waves-light red"><i className="material-icons">delete</i></Button>
+                        </Form>
+                        <Form onSubmit={this.onSubmit}  className="col-lg-6">
+                            <Button variant="primary" type="submit" className="btn-floating btn-large waves-effect waves-light blue"><i className="material-icons">edit</i></Button>
+>>>>>>> 3b42bec2d61678e7d5776d2852ff56230df0c4f7
                         </Form>
                         </div>
+                    </div>
                     </div>
                 </div>
                 </div>

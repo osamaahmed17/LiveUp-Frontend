@@ -8,6 +8,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import LoadingComponent from './components/loading/loading'
 import Signin from './views/signin/signin'
 import Signup from './views/signup/signup'
+import Signout from './views/signout/signout'
 import Dashboard from './views/dashboard'
 import Favicon from 'react-favicon';
 import { Provider } from 'react-redux';
@@ -53,12 +54,14 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
+       
           <Favicon url="" />
-          <Headers />
           <BrowserRouter>
+          <Headers />
             <Switch>
               <Route path="/signin" component={Signin} />
               <Route path="/signup" component={Signup} />
+              <Route path="/signout" component={Signout} />
               <Route exact path='/namelist' render={(props) => <NameList name={this.state.data} />} />
               <Route path="/dashboard" render={(...props) => <Dashboard name={this.state.data} />} /> />
           </Switch>
