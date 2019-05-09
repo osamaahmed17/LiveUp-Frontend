@@ -73,3 +73,14 @@ padding:50px;
   margin:10px;
 }
 
+.db{
+  background-color:red;
+}
+
+.myvideo{
+  width:auto;
+  height:400px;
+  margin-bottom: 20px;
+  border:2px solid;
+  overflow: hidden;
+}

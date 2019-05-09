@@ -43,7 +43,33 @@ class DashboardCard extends Component {
     render() {
         console.log(this.state.username)
         return (
+
+
             <div className="container">
+
+            <div id="updatemodal" class="modal">
+            <div class="modal-content">
+            <Form  onSubmit={this.onSubmit} id="update-form">
+                                    <div className="form-header">
+                                       Update User
+                                        </div>
+                                            <Form.Control type="text" placeholder="Username" className="username" onChange={this.handleChangeUsername} />
+                                            <Form.Control type="password" placeholder="Password" className="password" onChange={this.handleChangePassword} />
+                                            <Form.Control type="text" placeholder="Full Name" className="fullname" onChange={this.handleChangeFullName} />
+                                            <Form.Control type="text" placeholder="Country" className="country" onChange={this.handleChangeCountry} />
+                                        <div className="row">
+                                        <div className="col-lg-12">
+                                            <Button variant="primary" type="submit" className="text-capitalize modal-close">Update</Button>
+                                          
+                                        </div>
+                                    </div>
+                                </Form>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
+          </div>
+             
                 <div className="card dashcard">
                     <div className="card-image cardimg">
                         <img src={user} />
@@ -56,17 +82,28 @@ class DashboardCard extends Component {
                         </ul>
                     </div>
                     <div className="dash-card-btn">
+<<<<<<< HEAD
+                        <div className="row">
+                        <Form onSubmit={this.onSubmit} className="col-lg-6">
+                            <Button variant="primary" type="submit" className="btn-floating btn-large waves-effect waves-light red"><i className="material-icons">delete</i></Button>
+                        </Form>
+                        <Form onSubmit={this.onSubmit} className="col-lg-6">
+                            <Button variant="primary" type="submit" className="btn-floating btn-large waves-effect waves-light blue btn modal-trigger" data-target="updatemodal"><i className="material-icons">edit</i></Button>
+=======
                     <div className="row">
                         <Form onSubmit={this.onSubmit} className="col-lg-6">
                             <Button variant="primary" type="submit" className="btn-floating btn-large waves-effect waves-light red"><i className="material-icons">delete</i></Button>
                         </Form>
                         <Form onSubmit={this.onSubmit}  className="col-lg-6">
                             <Button variant="primary" type="submit" className="btn-floating btn-large waves-effect waves-light blue"><i className="material-icons">edit</i></Button>
+>>>>>>> 3b42bec2d61678e7d5776d2852ff56230df0c4f7
                         </Form>
+                        </div>
                     </div>
                     </div>
                 </div>
-            </div>
+                </div>
+
         );
     }
 }
