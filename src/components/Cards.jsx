@@ -26,26 +26,29 @@ class nameList extends Component {
         this.previewTracks = null;
         this.identity = null;
         this.roomName = 'Launchpad';
+
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
-
-        
-
-        
         this.roomJoined = this.roomJoined.bind(this);
-      
+
 
     }
     handleClose() {
         this.setState({ show: false });
-        this.leaveRoomIfJoined();
-        
+        console.log(this.activeRoom)
+        if (this.activeRoom) {
+            this.activeRoom.disconnect();
+
+        }
         console.log("Closed")
     }
 
     handleShow() {
         this.setState({ show: true });
-        var localTracksPromise = this.previewTracks= Video.createLocalTracks();
+
+        var localTracksPromise = this.previewTracks
+            ? Promise.resolve(this.previewTracks)
+            : Video.createLocalTracks();
         localTracksPromise.then(
             (tracks) => {
                 window.previewTracks = this.previewTracks = tracks;
@@ -55,10 +58,20 @@ class nameList extends Component {
                 }
             },
             (error) => {
-               console.log(error)
+                console.log(error)
             }
         );
-        this.joinRoom()
+        let connectOptions = {
+            name: this.roomName
+        };
+        if (this.state.previewTracks) {
+            connectOptions.tracks = this.state.previewTracks;
+        }
+        Video.connect(this.state.newtoken, connectOptions).then(this.roomJoined, error => {
+            alert('Could not connect to Twilio: ' + error.message);
+        });
+
+
     }
 
     componentDidMount() {
@@ -70,10 +83,10 @@ class nameList extends Component {
             username: self.state.newusername
         })
             .then(function (response) {
-              
+
                 self.setState({ newtoken: response.data });
-               console.log(self.state.newtoken)
- 
+                console.log(self.state.newtoken)
+
             }).catch(function (error) {
                 console.log(error);
             })
@@ -85,98 +98,83 @@ class nameList extends Component {
     }
 
 
-    joinRoom() {
-        console.log("Joining room '" + this.roomName + "'...");
-        let connectOptions = {
-            name: this.roomName
-        };
-        if (this.state.previewTracks) {
-            connectOptions.tracks = this.state.previewTracks;
-        }
-        Video.connect(this.state.newtoken, connectOptions).then(this.roomJoined, error => {
-            alert('Could not connect to Twilio: ' + error.message);
-        });
 
-    }
     attachTracks(tracks, container) {
         tracks.forEach(track => {
             container.appendChild(track.attach());
         });
     }
     attachParticipantTracks(participant, container) {
+        console.log(participant)
         var tracks = Array.from(participant.tracks.values());
         this.attachTracks(tracks, container);
     }
-    detachTracks(tracks) {
+   
+    detachParticipantTracks(participant) {
+        var tracks = Array.from(participant.tracks.values());
         tracks.forEach(track => {
             track.detach().forEach(detachedElement => {
                 detachedElement.remove();
             });
-        });
+        })
+            
     }
-
-    detachParticipantTracks(participant) {
-        var tracks = Array.from(participant.tracks.values());
-        this.detachTracks(tracks);
-    }
+    isArrayEmpty(array) {
+        return !Array.isArray(array) || !array.length
+      }
     roomJoined(room) {
+        console.log(room)
         this.activeRoom = room;
         window.room = room.name;
         // Called when a participant joins a room
-        var previewContainer = this.refs.localMedia;
-        if (!previewContainer.querySelector("video")) {
-            this.attachParticipantTracks(room.localParticipant, previewContainer);
-        }
-    
-        room.participants.forEach(participant => {
-            console.log("Already in Room: '" + participant.identity + "'");
-            var previewContainer = this.refs.remoteMedia;
-            this.attachParticipantTracks(participant, previewContainer);
-        });
 
-        room.on('participantConnected', participant => {
-            console.log("Joining: '" + participant.identity + "'");
-        });
-
-        room.on('trackAdded', (track, participant) => {
-            var previewContainer = this.refs.remoteMedia;
-            this.attachTracks([track], previewContainer);
-        });
-
-        room.on('trackRemoved', (track, participant) => {
-           
-            this.detachTracks([track]);
-        });
-
-        room.on('participantDisconnected', participant => {
-            console.log("Participant '" + participant.identity + "' left the room");
-            this.detachParticipantTracks(participant);
-        });
-
-        room.on('disconnected', () => {
-            if (this.previewTracks) {
-                this.previewTracks.forEach(track => {
-                    track.stop();
-                });
+        if (this.refs.localMedia) {
+            var previewContainer = this.refs.localMedia
+            if (!previewContainer.querySelector("video")) {
+                this.attachParticipantTracks(room.localParticipant, previewContainer);
             }
-            this.detachParticipantTracks(room.localParticipant);
-            room.participants.forEach(this.detachParticipantTracks);
-            this.activeRoom = null;
-            this.setState({ hasJoinedRoom: false, localMediaAvailable: false });
-        });
-    }
-    leaveRoomIfJoined() {
-        if (this.activeRoom) {
-            this.activeRoom.disconnect();
+            room.participants.forEach(participant => {
+                console.log("Already in Room: '" + participant.identity + "'");
+                var previewContainer = this.refs.remoteMedia;
+                this.attachParticipantTracks(participant, previewContainer);
+            });
+            room.on('participantConnected', participant => {
+                console.log("Joining: '" + participant.identity + "'");
+            });
+    
+            room.on('trackAdded', (track, participant) => {
+                var previewContainer = this.refs.remoteMedia;
+                this.attachTracks([track], previewContainer);
+            });
+    
            
+    
+            room.on('participantDisconnected', participant => {
+                console.log("Participant '" + participant.identity + "' left the room");
+                this.detachParticipantTracks(participant);
+            });
+    
+            room.on('disconnected', () => {
+                if (this.previewTracks) {
+                    this.previewTracks.forEach(track => {
+                        track.stop();
+                    });
+                }
+                this.detachParticipantTracks(room.localParticipant);
+                room.participants.forEach(this.detachParticipantTracks);
+                this.activeRoom = null;
+                this.setState({ hasJoinedRoom: false, localMediaAvailable: false });
+            });
         }
+      
+
+        
     }
-   
+
+
 
 
     render() {
-
-
         let userMessage;
         if (this.state.show === true) {
             console.log("Opened")
@@ -187,7 +185,7 @@ class nameList extends Component {
                         <div id="controls">
                             <div id="preview">
                                 <div ref="localMedia" id="local-media" className="myvideo"></div>
-                                <div className="flex-item" ref="remoteMedia" id="remote-media" className="myvideo"/>
+                                <div className="flex-item" ref="remoteMedia" id="remote-media" className="myvideo" />
                             </div>
                         </div>
                     </Modal.Body>
