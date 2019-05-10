@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Video from "twilio-video";
-import '../App.css'
 
 
 /*  
