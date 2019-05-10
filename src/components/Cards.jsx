@@ -17,7 +17,7 @@ class nameList extends Component {
         this.state = {
             newusername: '',
             newtoken: '',
-            show: '',
+            show: ''
 
 
 
@@ -72,9 +72,9 @@ class nameList extends Component {
 
 
     joinRoom() {
-        console.log("Joining room '" + this.state.roomName + "'...");
+        console.log("Joining room '" + this.roomName + "'...");
         let connectOptions = {
-            name: this.state.roomName
+            name: this.roomName
         };
         if (this.state.previewTracks) {
             connectOptions.tracks = this.state.previewTracks;
@@ -113,7 +113,7 @@ class nameList extends Component {
         if (!previewContainer.querySelector("video")) {
             this.attachParticipantTracks(room.localParticipant, previewContainer);
         }
-
+    
         room.participants.forEach(participant => {
             console.log("Already in Room: '" + participant.identity + "'");
             var previewContainer = this.refs.remoteMedia;
