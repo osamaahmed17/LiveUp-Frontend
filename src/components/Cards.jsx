@@ -29,23 +29,23 @@ class nameList extends Component {
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
 
+        
 
-
-
+        
         this.roomJoined = this.roomJoined.bind(this);
+      
+
     }
     handleClose() {
         this.setState({ show: false });
-        this.leaveRoomIfJoined()
+        this.leaveRoomIfJoined();
+        
+        console.log("Closed")
     }
 
     handleShow() {
         this.setState({ show: true });
-
-        var localTracksPromise = this.previewTracks
-            ? Promise.resolve(this.previewTracks)
-            : Video.createLocalTracks();
-
+        var localTracksPromise = this.previewTracks= Video.createLocalTracks();
         localTracksPromise.then(
             (tracks) => {
                 window.previewTracks = this.previewTracks = tracks;
@@ -70,8 +70,9 @@ class nameList extends Component {
             username: self.state.newusername
         })
             .then(function (response) {
+              
                 self.setState({ newtoken: response.data });
-               
+               console.log(self.state.newtoken)
  
             }).catch(function (error) {
                 console.log(error);
@@ -143,7 +144,7 @@ class nameList extends Component {
         });
 
         room.on('trackRemoved', (track, participant) => {
-            this.log(participant.identity + ' removed track: ' + track.kind);
+           
             this.detachTracks([track]);
         });
 
@@ -167,8 +168,10 @@ class nameList extends Component {
     leaveRoomIfJoined() {
         if (this.activeRoom) {
             this.activeRoom.disconnect();
+           
         }
     }
+   
 
 
     render() {
@@ -184,6 +187,7 @@ class nameList extends Component {
                         <div id="controls">
                             <div id="preview">
                                 <div ref="localMedia" id="local-media" className="myvideo"></div>
+                                <div className="flex-item" ref="remoteMedia" id="remote-media" className="myvideo"/>
                             </div>
                         </div>
                     </Modal.Body>
@@ -204,7 +208,7 @@ class nameList extends Component {
                             </div>
                             <Form className="col-lg-12">
                                 <Button variant="primary" onClick={this.handleShow} >
-                                    Call
+                                    JOIN
                                 </Button>
                             </Form>
                         </div>
