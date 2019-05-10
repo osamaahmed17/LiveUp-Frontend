@@ -15,7 +15,7 @@ class nameList extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            newusername: '',
+            newusername: this.props.data.username,
             newtoken: '',
             show: ''
 
@@ -55,7 +55,7 @@ class nameList extends Component {
                 }
             },
             (error) => {
-                this.log("Unable to access Camera and Microphon");
+               console.log(error)
             }
         );
         this.joinRoom()
@@ -65,9 +65,22 @@ class nameList extends Component {
 
         var elems = document.querySelectorAll('.modal');
         M.Modal.init(elems, { opacity: 1 });
-        axios.get('https://liveup.mybluemix.net/token').then(results => {
-            this.setState({ newtoken: results.data });
-        });
+        var self = this;
+        axios.post('https://liveup.mybluemix.net/token', {
+            username: self.state.newusername
+        })
+            .then(function (response) {
+                self.setState({ newtoken: response.data });
+               
+ 
+            }).catch(function (error) {
+                console.log(error);
+            })
+
+
+        // axios.get('https://liveup.mybluemix.net/token').then(results => {
+        //     this.setState({ newtoken: results.data });
+        // });
     }
 
 
