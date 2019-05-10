@@ -78,9 +78,9 @@ padding:50px;
 }
 
 .myvideo{
-  width:auto;
-  height:400px;
-  margin-bottom: 20px;
-  border:2px solid;
+  max-width:auto;
+  height:300px;
+
+ 
   overflow: hidden;
 }
