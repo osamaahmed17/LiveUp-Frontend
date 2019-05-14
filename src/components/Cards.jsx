@@ -45,17 +45,18 @@ class nameList extends Component {
 
     handleShow() {
         this.setState({ show: true });
-
-        var localTracksPromise = this.previewTracks
+        var self =this
+        var localTracksPromise = this.previewTracks 
             ? Promise.resolve(this.previewTracks)
             : Video.createLocalTracks();
         localTracksPromise.then(
             (tracks) => {
                 window.previewTracks = this.previewTracks = tracks;
                 var previewContainer = document.getElementById("local-media");
-                if (!previewContainer.querySelector("video")) {
+                if (!previewContainer.querySelector("video") && !self.state.show) {
                     this.attachTracks(tracks, previewContainer);
                 }
+                
             },
             (error) => {
                 console.log(error)
