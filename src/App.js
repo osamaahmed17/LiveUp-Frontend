@@ -65,7 +65,8 @@ class App extends Component {
               <Route exact path='/namelist' render={(props) => <NameList name={this.state.data} />} />
               <Route path="/dashboard" render={(...props) => <Dashboard name={this.state.data} />} /> />
           </Switch>
-            <Footers />
+       
+            {/*<Footers />*/}
           </BrowserRouter>
         </div>
       </Provider>
