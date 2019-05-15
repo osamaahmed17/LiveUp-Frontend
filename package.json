@@ -51,6 +51,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@types/d3": "^5.7.2"
+    "@types/d3": "^5.7.2",
+    "file-loader": "^3.0.1",
+    "url-loader": "^1.1.2"
   }
 }

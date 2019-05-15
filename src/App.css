@@ -1,7 +1,11 @@
 .App {
   text-align: center;
 }
-
+.app-footer{
+  background-color: #ED6D72;
+  padding:15px;
+  color:white;
+}
 /*---header---*/
 
 .logo-title{
@@ -21,6 +25,16 @@
 nav a:hover{
 text-decoration: none;
 color: white;
+}
+
+/*---Homepage---*/
+
+.main-wrapper{
+padding: 0 100px 50px 100px;
+text-align: center;
+}
+.title{
+  margin:50px 0 20px 0;
 }
 
 

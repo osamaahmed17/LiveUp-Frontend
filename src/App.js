@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 import Headers from './components/header'
+import HomePage from './components/HomePage'
 import Footers from './components/footer'
 import NameList from './views/nameList'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
@@ -62,11 +63,11 @@ class App extends Component {
               <Route path="/signin" component={Signin} />
               <Route path="/signup" component={Signup} />
               <Route path="/signout" component={Signout} />
+              <Route path="/" exact component={HomePage} />
               <Route exact path='/namelist' render={(props) => <NameList name={this.state.data} />} />
               <Route path="/dashboard" render={(...props) => <Dashboard name={this.state.data} />} /> />
           </Switch>
-       
-            {/*<Footers />*/}
+          <Footers />
           </BrowserRouter>
         </div>
       </Provider>
