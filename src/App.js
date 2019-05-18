@@ -11,7 +11,6 @@ import Signin from './views/signin/signin'
 import Signup from './views/signup/signup'
 import Signout from './views/signout/signout'
 import Dashboard from './views/dashboard'
-import Call from './views/Call';
 import Favicon from 'react-favicon';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -65,7 +64,6 @@ class App extends Component {
               <Route path="/signup" component={Signup} />
               <Route path="/signout" component={Signout} />
               <Route path="/" exact component={HomePage} />
-              <Route path="/Call" component={Call} />
               <Route exact path='/namelist' render={(props) => <NameList name={this.state.data} />} />
               <Route path="/dashboard" render={(...props) => <Dashboard name={this.state.data} />} /> />
           </Switch>

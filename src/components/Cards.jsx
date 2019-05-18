@@ -11,6 +11,9 @@ import socketIO from 'socket.io-client';
 
 
 
+
+
+
 class nameList extends Component {
     constructor(props) {
         super(props)
@@ -18,11 +21,10 @@ class nameList extends Component {
             newusername: this.props.data.username,
             newtoken: '',
             show: '',
-            caller:localStorage.getItem('user'),
-            called:this.props.data.username,
-            newcaller:'',
-            newcalled:''
-            
+
+            newcaller: '',
+            newcalled: ''
+
         }
         this.activeRoom = null;
         this.previewTracks = null;
@@ -45,15 +47,15 @@ class nameList extends Component {
         console.log("Closed")
     }
 
-    handleShow() {
 
-        this.socket = socketIO("https://liveup.mybluemix.net/");
-        this.socket.emit('greet',{caller:this.state.caller,called:this.state.called},function(data,err){
-            console.log(err);
-        })
-    
-        this.setState({ show: true });
+
+
+
+
+    handleShow() {
+        this.props.callApi()
         var self = this
+        this.setState({ show: true });
         var localTracksPromise = this.previewTracks
             ? Promise.resolve(this.previewTracks)
             : Video.createLocalTracks();
@@ -80,12 +82,27 @@ class nameList extends Component {
             alert('Could not connect to Twilio: ' + error.message);
         });
 
-      
+
 
 
     }
+    componentWillMount() {
+        var self = this
+        var socket = socketIO("http://localhost:3000");
+        socket.on("Data2", function (data, err) {
+            if (data) {
+                console.log('check 2', socket.connected);
+                self.setState({ newcalled: data });
+                console.log(self.state.newcalled)
+            }
+            else {
+                console.log("No Connection")
+            }
+        })
 
+    }
     componentDidMount() {
+
 
         var elems = document.querySelectorAll('.modal');
         M.Modal.init(elems, { opacity: 1 });
