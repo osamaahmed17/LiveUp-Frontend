@@ -5,7 +5,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import user from '../images/user.ico';
 import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
-import dashboard from '../views/dashboard';
 
 
 

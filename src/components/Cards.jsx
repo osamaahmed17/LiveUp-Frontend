@@ -7,7 +7,7 @@ import { Form, Button, Modal } from 'react-bootstrap';
 import Video from "twilio-video";
 import "../App.css"
 import axios from "axios"
-import '../App.css'
+import socketIO from 'socket.io-client';
 
 
 
@@ -17,10 +17,12 @@ class nameList extends Component {
         this.state = {
             newusername: this.props.data.username,
             newtoken: '',
-            show: ''
-
-
-
+            show: '',
+            caller:localStorage.getItem('user'),
+            called:this.props.data.username,
+            newcaller:'',
+            newcalled:''
+            
         }
         this.activeRoom = null;
         this.previewTracks = null;
@@ -44,9 +46,15 @@ class nameList extends Component {
     }
 
     handleShow() {
+
+        this.socket = socketIO("https://liveup.mybluemix.net/");
+        this.socket.emit('greet',{caller:this.state.caller,called:this.state.called},function(data,err){
+            console.log(err);
+        })
+    
         this.setState({ show: true });
-        var self =this
-        var localTracksPromise = this.previewTracks 
+        var self = this
+        var localTracksPromise = this.previewTracks
             ? Promise.resolve(this.previewTracks)
             : Video.createLocalTracks();
         localTracksPromise.then(
@@ -56,7 +64,7 @@ class nameList extends Component {
                 if (!previewContainer.querySelector("video") && !self.state.show) {
                     this.attachTracks(tracks, previewContainer);
                 }
-                
+
             },
             (error) => {
                 console.log(error)
@@ -71,6 +79,8 @@ class nameList extends Component {
         Video.connect(this.state.newtoken, connectOptions).then(this.roomJoined, error => {
             alert('Could not connect to Twilio: ' + error.message);
         });
+
+      
 
 
     }
@@ -110,7 +120,7 @@ class nameList extends Component {
         var tracks = Array.from(participant.tracks.values());
         this.attachTracks(tracks, container);
     }
-   
+
     detachParticipantTracks(participant) {
         var tracks = Array.from(participant.tracks.values());
         tracks.forEach(track => {
@@ -118,11 +128,11 @@ class nameList extends Component {
                 detachedElement.remove();
             });
         })
-            
+
     }
     isArrayEmpty(array) {
         return !Array.isArray(array) || !array.length
-      }
+    }
     roomJoined(room) {
         console.log(room)
         this.activeRoom = room;
@@ -142,19 +152,19 @@ class nameList extends Component {
             room.on('participantConnected', participant => {
                 console.log("Joining: '" + participant.identity + "'");
             });
-    
+
             room.on('trackAdded', (track, participant) => {
                 var previewContainer = this.refs.remoteMedia;
                 this.attachTracks([track], previewContainer);
             });
-    
-           
-    
+
+
+
             room.on('participantDisconnected', participant => {
                 console.log("Participant '" + participant.identity + "' left the room");
                 this.detachParticipantTracks(participant);
             });
-    
+
             room.on('disconnected', () => {
                 if (this.previewTracks) {
                     this.previewTracks.forEach(track => {
@@ -167,9 +177,9 @@ class nameList extends Component {
                 this.setState({ hasJoinedRoom: false, localMediaAvailable: false });
             });
         }
-      
 
-        
+
+
     }
 
 
@@ -206,7 +216,7 @@ class nameList extends Component {
                                 <p>{this.props.data.username}</p>
                             </div>
                             <Form className="col-lg-12">
-                                <Button variant="primary" onClick={this.handleShow} >
+                                <Button variant="primary" onClick={this.handleShow}  >
                                     JOIN
                                 </Button>
                             </Form>
