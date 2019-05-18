@@ -15,55 +15,78 @@ class NameList extends Component {
       caller: localStorage.getItem('user'),
       called: this.props.name,
       newcalled: '',
-      show:''
+      show: false
 
     }
   }
 
 
 
-  callApi = () => {
-    this.setState({ show: true });
+  truecallApi = () => {
     var self = this
-    var socket = socketIO("http://localhost:3000");
-    socket.emit('Data', { caller: localStorage.getItem('user') }, function (data, err) {
-      console.log(err);
+    self.setState({ show: true });
+  }
 
-    })
-    socket.on("Data", function (data, err) {
-      if (data) {
-        console.log('check 2', socket.connected);
-        self.setState({ newcalled: data.caller });
-        console.log(data)
-      }
-      else {
-        console.log("No Connection")
-      }
-    })
+  falsecallApi = () => {
+    var self = this
+    self.setState({ show: false });
   }
 
 
 
   render() {
+    console.log(this.state.show)
+    var self = this
+    var socket = socketIO("https://liveup.mybluemix.net");
+    if (this.state.show === true) {
+     
+      socket.emit('Data', { caller: localStorage.getItem('user'), showstate: true }, function (data, err) {
+        console.log(err);
+      })
+      socket.on("Data", function (data, err) {
+        if (data) {
+          self.setState({ newcalled: data.caller, show: data.showstate });
+          console.log(data)
+        }
+        else {
+          console.log("No Connection")
+        }
+      })
+    }
+    if (this.state.show === false) {
+    
+      socket.emit('Data', { caller: '', showstate: false }, function (data, err) {
+        console.log(err);
+      })
+      socket.on("Data", function (data, err) {
+        if (data) {
+          self.setState({ newcalled: data.caller, show: data.showstate });
+          console.log(data)
+        }
+        else {
+          console.log("No Connection")
+        }
+      })
+    }
     let userMessage;
     if (this.state.newcalled !== '') {
-        console.log("Opened")
-        userMessage = (
-          <h4><b>Incoming Call From:</b>{this.state.newcalled}</h4>
-        )
+      console.log("Opened")
+      userMessage = (
+        <h4><b>Incoming Call From:</b>{this.state.newcalled}</h4>
+      )
     }
     return (
       <div className="nameList">
         <h1><b>Welcome </b>{localStorage.getItem('user')}</h1>
-       
+
         <div className="container">
-         {userMessage}
+          {userMessage}
           <div className="row">
             {this.props.name.map((value, key) => {
               return (
                 <div className="col-lg-4">
 
-                  <Cards key={value.username} data={value} callApi={this.callApi} />
+                  <Cards key={value.username} data={value} truecallApi={this.truecallApi}  falsecallApi={this.falsecallApi} />
 
                 </div>
               )

@@ -45,15 +45,11 @@ class nameList extends Component {
 
         }
         console.log("Closed")
+        this.props.falsecallApi();
     }
 
-
-
-
-
-
     handleShow() {
-        this.props.callApi()
+        this.props.truecallApi();
         var self = this
         this.setState({ show: true });
         var localTracksPromise = this.previewTracks
@@ -86,24 +82,8 @@ class nameList extends Component {
 
 
     }
-    componentWillMount() {
-        var self = this
-        var socket = socketIO("http://localhost:3000");
-        socket.on("Data2", function (data, err) {
-            if (data) {
-                console.log('check 2', socket.connected);
-                self.setState({ newcalled: data });
-                console.log(self.state.newcalled)
-            }
-            else {
-                console.log("No Connection")
-            }
-        })
 
-    }
     componentDidMount() {
-
-
         var elems = document.querySelectorAll('.modal');
         M.Modal.init(elems, { opacity: 1 });
         var self = this;
@@ -203,6 +183,7 @@ class nameList extends Component {
 
 
     render() {
+   
         let userMessage;
         if (this.state.show === true) {
             console.log("Opened")
