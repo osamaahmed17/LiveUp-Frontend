@@ -11,9 +11,6 @@ import socketIO from 'socket.io-client';
 
 
 
-
-
-
 class nameList extends Component {
     constructor(props) {
         super(props)
@@ -45,13 +42,21 @@ class nameList extends Component {
 
         }
         console.log("Closed")
-        this.props.falsecallApi();
+        var self = this
+        var socket = socketIO("https://liveup.mybluemix.net");
+        socket.emit('Data', { showstate: 'close',username:'' }, function (data, err) {
+                console.log(err);
+              })
     }
 
     handleShow() {
-        this.props.truecallApi();
         var self = this
+        
+        
+       
+        
         this.setState({ show: true });
+     
         var localTracksPromise = this.previewTracks
             ? Promise.resolve(this.previewTracks)
             : Video.createLocalTracks();
@@ -78,12 +83,18 @@ class nameList extends Component {
             alert('Could not connect to Twilio: ' + error.message);
         });
 
-
+        var self = this
+        var socket = socketIO("https://liveup.mybluemix.net");
+        socket.emit('Data', { showstate: 'open',username:localStorage.getItem('user') }, function (data, err) {
+                console.log(err);
+              })
 
 
     }
 
     componentDidMount() {
+
+
         var elems = document.querySelectorAll('.modal');
         M.Modal.init(elems, { opacity: 1 });
         var self = this;
@@ -183,10 +194,8 @@ class nameList extends Component {
 
 
     render() {
-   
         let userMessage;
         if (this.state.show === true) {
-            console.log("Opened")
             userMessage = (
                 <Modal show={this.state.show} onHide={this.handleClose}>
                     <Modal.Body>

@@ -14,65 +14,48 @@ class NameList extends Component {
     this.state = {
       caller: localStorage.getItem('user'),
       called: this.props.name,
-      newcalled: '',
-      show: false
+      username: '',
+      show: 'close'
 
     }
   }
 
-
-
-  truecallApi = () => {
-    var self = this
-    self.setState({ show: true });
-  }
-
-  falsecallApi = () => {
-    var self = this
-    self.setState({ show: false });
-  }
 
 
 
   render() {
-    console.log(this.state.show)
+    // console.log(this.state.show)
     var self = this
     var socket = socketIO("https://liveup.mybluemix.net");
-    if (this.state.show === true) {
-     
-      socket.emit('Data', { caller: localStorage.getItem('user'), showstate: true }, function (data, err) {
-        console.log(err);
-      })
       socket.on("Data", function (data, err) {
         if (data) {
-          self.setState({ newcalled: data.caller, show: data.showstate });
-          console.log(data)
+          self.setState({show: data.showstate,username:data.username});
+          console.log(data.showstate)
         }
         else {
           console.log("No Connection")
         }
       })
-    }
-    if (this.state.show === false) {
     
-      socket.emit('Data', { caller: '', showstate: false }, function (data, err) {
-        console.log(err);
-      })
-      socket.on("Data", function (data, err) {
-        if (data) {
-          self.setState({ newcalled: data.caller, show: data.showstate });
-          console.log(data)
-        }
-        else {
-          console.log("No Connection")
-        }
-      })
-    }
+    // if (this.state.show === false) {
+    
+    //   socket.emit('Data', { caller: '', showstate: false }, function (data, err) {
+    //     console.log(err);
+    //   })
+    //   socket.on("Data", function (data, err) {
+    //     if (data) {
+    //       self.setState({ newcalled: data.caller, show: data.showstate });
+    //       console.log(data)
+    //     }
+    //     else {
+    //       console.log("No Connection")
+    //     }
+    //   })
+    // }
     let userMessage;
-    if (this.state.newcalled !== '') {
-      console.log("Opened")
+    if (this.state.show === 'open') {
       userMessage = (
-        <h4><b>Incoming Call From:</b>{this.state.newcalled}</h4>
+        <h4><b>Incoming Call From:</b>{this.state.username}</h4>
       )
     }
     return (
