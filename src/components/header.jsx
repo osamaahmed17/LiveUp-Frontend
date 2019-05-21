@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import 'materialize-css/dist/css/materialize.min.css'
 import 'materialize-css/dist/js/materialize.min.js'
 import 'bootstrap/dist/css/bootstrap.css';
-import logo from '../images/logo.png';
+import logo from '../images/logo1.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { BrowserRouter} from 'react-router-dom'
@@ -32,9 +32,9 @@ class Header extends Component {
                 <div className="row">
                     <div className="col-lg-2">
                         <a href="#" className="brand-logo center">
-                            <img src={logo} width="45" height="60">
+                            <img src={logo} width="55" height="85">
                             </img>
-                            <h6>LiveUp</h6>
+                           
                         </a>
                     </div>
                     <div className="col-lg-7"></div>

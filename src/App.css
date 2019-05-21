@@ -1,26 +1,44 @@
 .App {
   text-align: center;
+  color:#878f99;
 }
 .app-footer{
   background-color: #ED6D72;
   padding:15px;
   color:white;
 }
+.container{
+  padding: 30px;
+}
+.title{
+  text-transform: capitalize;
+  margin:40px 0 30px 0;
+  color:#b2ad7f;
+}
+
+.call-btn i{
+  background-color: #a2b9bc;
+  
+}
+.service-grid i{
+  color: #a2b9bc;
+}
 /*---header---*/
 
 .logo-title{
-  margin-top:2px;
+  margin-top:0px;
 }
 .app-header {
   height:auto;
   padding:5px;
   font-weight: bold;
+  background-color: #6b5b95;
 }
 .app-links li{
-  border: 1px solid #ED6D72;
+  border: 1px solid #6b5b95;;
 }
 .app-links li:hover{
-  border: 1px solid white;
+  border: 1px solid #878f99;
 }
 nav a:hover{
 text-decoration: none;
@@ -29,13 +47,8 @@ color: white;
 
 /*---Homepage---*/
 
-.main-wrapper{
-padding: 0 100px 50px 100px;
-text-align: center;
-}
-.title{
-  margin:50px 0 20px 0;
-}
+
+
 
 
 /*---forms---*/
@@ -96,3 +109,33 @@ padding:50px;
   height:500px;
 
 }
+
+/**--namelist cards--**/
+
+.card{
+  padding:20px;
+}
+
+.card-content{
+  text-transform: capitalize;
+}
+
+
+.notification{
+ 
+  border:1px solid black;
+  padding:10px;
+  color:white;
+  background-color: green;
+  margin:30px;
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+
+

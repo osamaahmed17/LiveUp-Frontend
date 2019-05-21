@@ -18,6 +18,7 @@ import reduxThunk from 'redux-thunk';
 import reducers from './reducers'
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
+
 const store = createStore(
   reducers,
   {
@@ -55,7 +56,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
-       
+        
           <Favicon url="" />
           <BrowserRouter>
           <Headers />
@@ -67,7 +68,6 @@ class App extends Component {
               <Route exact path='/namelist' render={(props) => <NameList name={this.state.data} />} />
               <Route path="/dashboard" render={(...props) => <Dashboard name={this.state.data} />} /> />
           </Switch>
-          <Footers />
           </BrowserRouter>
         </div>
       </Provider>

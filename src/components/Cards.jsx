@@ -215,17 +215,17 @@ class nameList extends Component {
         return (
 
             <div>
-
                 <div className="row">
                     <div className="col s12 m3">
                         <div className="card">
                             <div className="card-content">
-                                <p>{this.props.data.username}</p>
+                                <h5>{this.props.data.username}</h5>
+                                <h6>{this.props.data.country}</h6>
                             </div>
                             <Form className="col-lg-12">
-                                <Button variant="primary" onClick={this.handleShow}  >
-                                    JOIN
-                                </Button>
+                           
+                                <a onClick={this.handleShow} className="btn-floating btn-medium waves-effect call-btn"><i className="material-icons">call</i></a>
+                              
                             </Form>
                         </div>
                         <div>

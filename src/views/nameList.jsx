@@ -8,6 +8,8 @@ import socketIO from 'socket.io-client';
 import { Button, Modal } from 'react-bootstrap';
 
 
+
+
 class NameList extends Component {
   constructor(props) {
     super(props)
@@ -18,6 +20,7 @@ class NameList extends Component {
       show: 'close'
 
     }
+
   }
 
 
@@ -55,27 +58,28 @@ class NameList extends Component {
     let userMessage;
     if (this.state.show === 'open') {
       userMessage = (
-        <h4><b>Incoming Call From:</b>{this.state.username}</h4>
+        <div class="notification"><h5>Incoming Call From <b>{this.state.username}</b></h5></div>
       )
     }
     return (
       <div className="nameList">
-        <h1><b>Welcome </b>{localStorage.getItem('user')}</h1>
-
-        <div className="container">
+      <div className="container">
+        <h2 className="title">Welcome {localStorage.getItem('user')}</h2>
+     
           {userMessage}
           <div className="row">
             {this.props.name.map((value, key) => {
               return (
                 <div className="col-lg-4">
-
+                
                   <Cards key={value.username} data={value} truecallApi={this.truecallApi}  falsecallApi={this.falsecallApi} />
 
                 </div>
               )
             })
             }
-          </div>
+
+        </div>
         </div>
       </div>
     );
