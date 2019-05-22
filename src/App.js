@@ -3,7 +3,6 @@ import axios from 'axios';
 import './App.css';
 import Headers from './components/header'
 import HomePage from './components/HomePage'
-import Footers from './components/footer'
 import NameList from './views/nameList'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import LoadingComponent from './components/loading/loading'
@@ -16,7 +15,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 import reducers from './reducers'
-const proxyurl = "https://cors-anywhere.herokuapp.com/";
+//const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
 
 const store = createStore(
@@ -37,7 +36,7 @@ class App extends Component {
 
   componentDidMount() {
     var self = this;
-    axios.get(proxyurl+'https://liveup.mybluemix.net/users')
+    axios.get('https://liveup.mybluemix.net/users')
       .then(function (response) {
         self.setState({ data: response.data })
       })
@@ -50,7 +49,8 @@ class App extends Component {
 
   
   render() {
-    if (this.state.data == null)
+    
+    if (this.state.data == undefined)
       return (<LoadingComponent />);
     console.log(this.state.data)
     return (
@@ -61,7 +61,7 @@ class App extends Component {
           <BrowserRouter>
           <Headers />
             <Switch>
-              <Route path="/signin" component={Signin} />
+              <Route path="/signin" render={(props) => <Signin name={this.state.data} />} />
               <Route path="/signup" component={Signup} />
               <Route path="/signout" component={Signout} />
               <Route path="/" exact component={HomePage} />

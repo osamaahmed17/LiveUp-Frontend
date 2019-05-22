@@ -5,7 +5,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import logo from '../images/logo1.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { BrowserRouter} from 'react-router-dom'
 
 class Header extends Component {
     renderLinks() {

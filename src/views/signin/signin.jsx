@@ -22,7 +22,6 @@ class Signin extends Component {
 
   render() {
     const { handleSubmit } = this.props;
-
     return (
       <div className="Login">
         <div className="row">

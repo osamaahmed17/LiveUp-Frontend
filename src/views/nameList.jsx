@@ -5,7 +5,6 @@ import 'materialize-css/dist/js/materialize.min.js'
 import 'bootstrap/dist/css/bootstrap.css';
 import Cards from '../components/Cards'
 import socketIO from 'socket.io-client';
-import { Button, Modal } from 'react-bootstrap';
 
 
 
@@ -28,6 +27,7 @@ class NameList extends Component {
 
   render() {
     // console.log(this.state.show)
+    
     var self = this
     var socket = socketIO("https://liveup.mybluemix.net");
       socket.on("Data", function (data, err) {
