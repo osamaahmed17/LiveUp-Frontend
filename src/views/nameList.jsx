@@ -58,7 +58,7 @@ class NameList extends Component {
     let userMessage;
     if (this.state.show === 'open') {
       userMessage = (
-        <div class="notification"><h5>Incoming Call From <b>{this.state.username}</b></h5></div>
+        <div className="notification"><h5>Incoming Call From <b>{this.state.username}</b></h5></div>
       )
     }
     return (

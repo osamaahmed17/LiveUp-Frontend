@@ -15,19 +15,13 @@
   margin:40px 0 30px 0;
   color:#b2ad7f;
 }
-
-.call-btn i{
-  background-color: #a2b9bc;
-  
-}
 .service-grid i{
   color: #a2b9bc;
 }
+
+
 /*---header---*/
 
-.logo-title{
-  margin-top:0px;
-}
 .app-header {
   height:auto;
   padding:5px;
@@ -44,11 +38,6 @@ nav a:hover{
 text-decoration: none;
 color: white;
 }
-
-/*---Homepage---*/
-
-
-
 
 
 /*---forms---*/
@@ -69,20 +58,14 @@ color: white;
   height:60px;
 }
 
+
 /*--Dashboard---*/
 
-.dashboard-container{
-padding:50px;
-}
 
 .cardimg{
-  width:150px;
-  height:150px;
-  margin:10px auto;
-}
-
-.dash-card-btn a{
-  margin:10px;
+  width:100px;
+  height:100px;
+  margin:0px auto;
 }
 
 .dash-btn{
@@ -103,7 +86,6 @@ padding:50px;
  
   overflow: hidden;
 }
-
 .videomodal{
   width:1000px;
   height:500px;
@@ -115,14 +97,16 @@ padding:50px;
 .card{
   padding:20px;
 }
-
+.app-btn{
+  background-color: #a2b9bc;
+}
+.app-btn i{
+  background-color: #a2b9bc;
+}
 .card-content{
   text-transform: capitalize;
 }
-
-
 .notification{
- 
   border:1px solid black;
   padding:10px;
   color:white;
@@ -130,7 +114,6 @@ padding:50px;
   margin:30px;
   animation: blinker 1s linear infinite;
 }
-
 @keyframes blinker {
   50% {
     opacity: 0;

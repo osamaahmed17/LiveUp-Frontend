@@ -44,10 +44,10 @@ class DashboardCard extends Component {
         return (
 
 
-            <div className="container">
+            <div >
 
-            <div id="updatemodal" class="modal">
-            <div class="modal-content">
+            <div id="updatemodal" className="modal">
+            <div className="modal-content">
             <Form  onSubmit={this.onSubmit} id="update-form">
                                     <div className="form-header">
                                        Update User
@@ -64,8 +64,8 @@ class DashboardCard extends Component {
                                     </div>
                                 </Form>
             </div>
-            <div class="modal-footer">
-              <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+            <div className="modal-footer">
+              <a href="#!" className="modal-close waves-effect waves-green btn-flat">Agree</a>
             </div>
           </div>
              
@@ -83,11 +83,12 @@ class DashboardCard extends Component {
                     <div className="dash-card-btn">
                         <div className="row">
                         <Form onSubmit={this.onSubmit} className="col-lg-6">
-                            <Button variant="primary" type="submit" className="btn-floating btn-large waves-effect waves-light red"><i className="material-icons">delete</i></Button>
+                        <a onClick={this.handleShow} className="btn-floating btn-medium waves-effect red modal-trigger" data-target="updatemodal"><i className="material-icons">delete</i></a>
                         </Form>
                         <Form onSubmit={this.onSubmit} className="col-lg-6">
-                            <Button variant="primary" type="submit" className="btn-floating btn-large waves-effect waves-light blue btn modal-trigger" data-target="updatemodal"><i className="material-icons">edit</i></Button>
-                        </Form>
+                        <a onClick={this.handleShow} className="btn-floating btn-medium waves-effect blue modal-trigger" data-target="updatemodal"><i className="material-icons">edit</i></a>
+                              
+                     </Form>
                         </div>
                     </div>
                     </div>

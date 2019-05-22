@@ -34,7 +34,6 @@ class Header extends Component {
                         <a href="#" className="brand-logo center">
                             <img src={logo} width="55" height="85">
                             </img>
-                           
                         </a>
                     </div>
                     <div className="col-lg-7"></div>

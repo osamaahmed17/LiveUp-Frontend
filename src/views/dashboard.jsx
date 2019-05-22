@@ -40,17 +40,14 @@ class Dashboard extends Component {
         this.setState({ country: e.target.value });
     }
 
-
     componentDidMount() {
         var elems = document.querySelectorAll('.modal');
-        M.Modal.init(elems, { opacity: 0.5 });
-
-       
+        M.Modal.init(elems, { opacity: 0.5 });  
     }
+
    
-    
+
     onSubmit(e) {
-        console.log("clear all");
         document.getElementById("add-form").reset();
         var self = this;
         e.preventDefault();
@@ -71,38 +68,15 @@ class Dashboard extends Component {
             console.log(self.state.name)
         }).catch(function (error) {
             console.log(error);
-          })
-          
-         
-
-        
+          })   
     }
+
     render() {
         return (
-            <div >
-<div>
-                <h1><b>Welcome</b> {localStorage.getItem('user')}</h1>
-                <div className="List" >
-                <div className="row">
-                        {this.state.name.map((value, key) => {
-                        return (
-                            <div className="col-lg-4">
-                                <DashboardCard key={value.username} data={value} />
-                            </div>
-                        )
-                    }
-                    )}
-                    </div>
-                </div>
-                </div>
-                <div className="row">
-                    <div className="dash-btn">
-                        <a className="btn-floating btn-large waves-effect waves-light blue modal-trigger" href="#addmodal"><i className="material-icons">add</i></a>
-                        <Link to="/namelist">
-                            <a className="btn-floating btn-large waves-effect waves-light green"><i className="material-icons">call</i></a>
-                        </Link>
-                    </div>
-                </div>
+            <div>
+
+               
+
                 <div id="addmodal" className="modal">
                     <div className="modal-content">
                         <div className="Add">
@@ -128,6 +102,36 @@ class Dashboard extends Component {
                         </div>
                     </div>
                 </div>
+
+         
+
+            <div className="container">
+                <h2 className="title">Welcome {localStorage.getItem('user')}</h2>
+                <div className="List" >
+                    <div className="row">
+                        {this.state.name.map((value, index) => {
+                        console.log("i am key: "+index)
+                        return (
+                            <div className="col-lg-4">
+                                <DashboardCard key={index} data={value} />
+                               
+                            </div>
+                            )}
+                        )}
+                    </div>
+                </div>
+            </div>
+                <div className="row">
+                    <div className="dash-btn">
+                        <a className="btn-floating btn-large waves-effect waves-light blue modal-trigger app-btn" href="#addmodal"><i className="material-icons">add</i></a>
+                       
+                            <Link to="/namelist" className="btn-floating btn-large waves-effect waves-light app-btn"><i className="material-icons">call</i></Link>
+                            
+                    
+                    </div>
+                </div>
+                
+                
             </div>
          
         );
