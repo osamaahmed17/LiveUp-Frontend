@@ -7,7 +7,6 @@ import DashboardCard from '../components/dashboardcard'
 import { Link } from 'react-router-dom'
 import M from "materialize-css";
 import { Form, Button } from 'react-bootstrap';
-import './dashboard.css'
 import axios from 'axios';
 
 class Dashboard extends Component {
@@ -45,7 +44,7 @@ class Dashboard extends Component {
         M.Modal.init(elems, { opacity: 0.5 });  
     }
 
-   
+    /* Add new user*/
 
     onSubmit(e) {
         document.getElementById("add-form").reset();
@@ -75,7 +74,7 @@ class Dashboard extends Component {
         return (
             <div>
 
-               
+                {/* Modal for adding new user */}
 
                 <div id="addmodal" className="modal">
                     <div className="modal-content">
@@ -90,12 +89,8 @@ class Dashboard extends Component {
                                             <Form.Control type="password" placeholder="Password" className="password" onChange={this.handleChangePassword} />
                                             <Form.Control type="text" placeholder="Full Name" className="fullname" onChange={this.handleChangeFullName} />
                                             <Form.Control type="text" placeholder="Country" className="country" onChange={this.handleChangeCountry} />
-                                        <div className="row">
-                                        <div className="col-lg-12">
                                             <Button variant="primary" type="submit" className="text-capitalize modal-close">Add</Button>
-                                          
-                                        </div>
-                                    </div>
+ 
                                 </Form>
                             </div>
                             <div className="col-lg-4"></div>
@@ -103,7 +98,7 @@ class Dashboard extends Component {
                     </div>
                 </div>
 
-         
+            {/* Dashboard starts */}
 
             <div className="container">
                 <h2 className="title">Welcome {localStorage.getItem('user')}</h2>

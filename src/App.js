@@ -3,7 +3,6 @@ import axios from 'axios';
 import './App.css';
 import Headers from './components/header'
 import HomePage from './components/HomePage'
-import Footers from './components/footer'
 import NameList from './views/nameList'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import LoadingComponent from './components/loading/loading'

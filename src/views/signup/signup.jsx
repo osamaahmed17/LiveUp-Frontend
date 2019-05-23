@@ -46,18 +46,18 @@ class Signup extends Component {
               </Form.Group>
               <div>{this.props.errorMessage}</div>
               <div className="row">
+                <div className=" app-links col-lg-8">
+            <Link to='/signin'>Already have an account? SignIn</Link>
+          </div>
                 <div className="col-lg-4">
-                  <Link to="/signin">
-                    <Button variant="success" className="text-capitalize">LOGIN</Button>
-                  </Link>
-                </div>
-                <div className="col-lg-4"></div>
-                <div className="col-lg-4">
-                <Button variant="danger" type='submit'>Signup</Button>
+                <button className="btn waves-effect waves-light" type="submit">
+                  Signup
+                </button>
                 </div>
               </div>
             </Form>
           </div>
+          <div className="col-lg-4"></div>  
         </div>
       </div>
     );
