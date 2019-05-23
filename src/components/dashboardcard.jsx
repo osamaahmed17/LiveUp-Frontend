@@ -14,64 +14,47 @@ class DashboardCard extends Component {
         this.state = {
             username: this.props.data.username,
             country: this.props.data.country,
-            fullname: this.props.data.fullname
+            fullname: this.props.data.fullname,
+            newusername: ''
 
 
         }
         this.onSubmit = this.onSubmit.bind(this);
 
     }
-    onSubmit(e) {
+  
+
+    onSubmit(e,someParameter) {
         e.preventDefault();
-        var self = this;
-        axios.post('https://liveup.mybluemix.net/users/delete', {
-            username: self.state.username
-        })
-            .then(function (response) {
-                //console.log(response.data.user)
-                self.setState({
-                    username: ''
-                })
- 
-                console.log(self.state.username)
-            }).catch(function (error) {
-                console.log(error);
-            })
+        this.props.edit(someParameter);
     }
 
     render() {
-        console.log(this.state.username)
+
+
         return (
-
-
             <div >
+                <div id="updatemodal" className="modal">
+                    <div className="modal-content">
+                        <Form onSubmit={this.onSubmit} >
+                            <div className="form-header">
+                                Updata
+                                        </div>
+                            <Form.Control type="password" placeholder="Password" className="password" onChange={this.handleChangePassword} />
+                            <Form.Control type="text" placeholder="Full Name" className="fullname" onChange={this.handleChangeFullName} />
+                            <Form.Control type="text" placeholder="Country" className="country" onChange={this.handleChangeCountry} />
+                            <div className="row">
+                                <div className="col-lg-12">
+                                    <Button variant="primary" type="submit" className="text-capitalize modal-close">Update</Button>
 
-            <div id="updatemodal" className="modal">
-            <div className="modal-content">
-            <Form  onSubmit={this.onSubmit} id="update-form">
-                                    <div className="form-header">
-                                       Update User
-                                        </div>
-                                            <Form.Control type="text" placeholder="Username" className="username" onChange={this.handleChangeUsername} />
-                                            <Form.Control type="password" placeholder="Password" className="password" onChange={this.handleChangePassword} />
-                                            <Form.Control type="text" placeholder="Full Name" className="fullname" onChange={this.handleChangeFullName} />
-                                            <Form.Control type="text" placeholder="Country" className="country" onChange={this.handleChangeCountry} />
-                                        <div className="row">
-                                        <div className="col-lg-12">
-                                            <Button variant="primary" type="submit" className="text-capitalize modal-close">Update</Button>
-                                          
-                                        </div>
-                                    </div>
-                                </Form>
-            </div>
-            <div className="modal-footer">
-              <a href="#!" className="modal-close waves-effect waves-green btn-flat">Agree</a>
-            </div>
-          </div>
-             
+                                </div>
+                            </div>
+                        </Form>
+                    </div>
+                </div>
                 <div className="card dashcard">
                     <div className="card-image cardimg">
-                        <img src={user} />
+                        <img src={user} alt="Profile" />
                     </div>
                     <div className="card-content">
                         <ul>
@@ -82,18 +65,18 @@ class DashboardCard extends Component {
                     </div>
                     <div className="dash-card-btn">
                         <div className="row">
-                        <Form onSubmit={this.onSubmit} className="col-lg-6">
-                        <a onClick={this.handleShow} className="btn-floating btn-medium waves-effect red modal-trigger" data-target="updatemodal"><i className="material-icons">delete</i></a>
-                        </Form>
-                        <Form onSubmit={this.onSubmit} className="col-lg-6">
-                        <a onClick={this.handleShow} className="btn-floating btn-medium waves-effect blue modal-trigger" data-target="updatemodal"><i className="material-icons">edit</i></a>
-                              
-                     </Form>
+                            <Form  className="col-lg-6">
+                                 <a onClick={(e) => {this.onSubmit(e, this.state.username)}} className="btn-floating btn-medium waves-effect red" ><i className="material-icons">delete</i></a> 
+                            </Form>
+                            <Form onSubmit={this.onSubmit} className="col-lg-6">
+                                <a onClick={this.handleShow} className="btn-floating btn-medium waves-effect blue modal-trigger" data-target="updatemodal"><i className="material-icons">edit</i></a>
+
+                            </Form>
                         </div>
                     </div>
-                    </div>
                 </div>
-                
+            </div>
+
 
         );
     }

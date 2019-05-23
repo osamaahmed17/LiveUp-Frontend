@@ -17,14 +17,14 @@ class Dashboard extends Component {
             password: '',
             fullname: '',
             country: '',
-            name:this.props.name,
+            name: this.props.name
         }
         this.handleChangeUsername = this.handleChangeUsername.bind(this);
         this.handleChangePassword = this.handleChangePassword.bind(this);
         this.handleChangeFullName = this.handleChangeFullName.bind(this);
         this.handleChangeCountry = this.handleChangeCountry.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-
+        this.editmethod = this.editmethod.bind(this);
     }
     handleChangeUsername(e) {
         this.setState({ username: e.target.value });
@@ -41,11 +41,12 @@ class Dashboard extends Component {
 
     componentDidMount() {
         var elems = document.querySelectorAll('.modal');
-        M.Modal.init(elems, { opacity: 0.5 });  
+        M.Modal.init(elems, { opacity: 0.5 });
     }
 
     /* Add new user*/
 
+    
     onSubmit(e) {
         document.getElementById("add-form").reset();
         var self = this;
@@ -55,24 +56,21 @@ class Dashboard extends Component {
             password: this.state.password,
             fullname: this.state.fullname,
             country: this.state.country
-          })
-          .then(function (response) {
-            //console.log(response.data.user)
-            self.setState({
-                    response:response
+        })
+            .then(function (response) {
+
+                const current = self.state.name;
+                const newname = current.concat(response.data.user);
+                self.setState({ name: newname });
+                console.log(self.state.name)
+            }).catch(function (error) {
+                console.log(error);
             })
-            const current= self.state.name;
-            const newname = current.concat(response.data.user);
-            self.setState({ name: newname });
-            console.log(self.state.name)
-        }).catch(function (error) {
-            console.log(error);
-          })   
     }
 
     render() {
         return (
-            <div>
+        <div>
 
                 {/* Modal for adding new user */}
 
@@ -81,10 +79,10 @@ class Dashboard extends Component {
                         <div className="Add">
                             <div className="row">
                                 <div className="col-lg-4"></div>
-                                <Form  onSubmit={this.onSubmit} id="add-form">
+                                <Form onSubmit={this.onSubmit} id="add-form">
                                     <div className="form-header">
                                         Add User
-                                        </div>
+                                    </div>
                                             <Form.Control type="text" placeholder="Username" className="username" onChange={this.handleChangeUsername} />
                                             <Form.Control type="password" placeholder="Password" className="password" onChange={this.handleChangePassword} />
                                             <Form.Control type="text" placeholder="Full Name" className="fullname" onChange={this.handleChangeFullName} />
@@ -92,8 +90,9 @@ class Dashboard extends Component {
                                             <Button variant="primary" type="submit" className="text-capitalize modal-close">Add</Button>
  
                                 </Form>
+                                <div className="col-lg-4"></div>
                             </div>
-                            <div className="col-lg-4"></div>
+                           
                         </div>
                     </div>
                 </div>
@@ -112,23 +111,23 @@ class Dashboard extends Component {
                                
                             </div>
                             )}
-                        )}
+                            )
+                        }
                     </div>
                 </div>
-            </div>
                 <div className="row">
                     <div className="dash-btn">
                         <a className="btn-floating btn-large waves-effect waves-light blue modal-trigger app-btn" href="#addmodal"><i className="material-icons">add</i></a>
-                       
-                            <Link to="/namelist" className="btn-floating btn-large waves-effect waves-light app-btn"><i className="material-icons">call</i></Link>
-                            
-                    
+
+                        <Link to="/namelist" className="btn-floating btn-large waves-effect waves-light app-btn"><i className="material-icons">call</i></Link>
+
+
                     </div>
                 </div>
-                
-                
+
             </div>
-         
+        </div>
+
         );
     }
 }

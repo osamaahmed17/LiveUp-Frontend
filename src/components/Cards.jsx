@@ -42,7 +42,7 @@ class nameList extends Component {
 
         }
         console.log("Closed")
-        var self = this
+
         var socket = socketIO("https://liveup.mybluemix.net");
         socket.emit('Data', { showstate: 'close',username:'' }, function (data, err) {
                 console.log(err);
@@ -51,12 +51,7 @@ class nameList extends Component {
 
     handleShow() {
         var self = this
-        
-        
-       
-        
         this.setState({ show: true });
-     
         var localTracksPromise = this.previewTracks
             ? Promise.resolve(this.previewTracks)
             : Video.createLocalTracks();
@@ -82,8 +77,6 @@ class nameList extends Component {
         Video.connect(this.state.newtoken, connectOptions).then(this.roomJoined, error => {
             alert('Could not connect to Twilio: ' + error.message);
         });
-
-        var self = this
         var socket = socketIO("https://liveup.mybluemix.net");
         socket.emit('Data', { showstate: 'open',username:localStorage.getItem('user') }, function (data, err) {
                 console.log(err);
@@ -93,8 +86,6 @@ class nameList extends Component {
     }
 
     componentDidMount() {
-
-
         var elems = document.querySelectorAll('.modal');
         M.Modal.init(elems, { opacity: 1 });
         var self = this;
@@ -111,9 +102,7 @@ class nameList extends Component {
             })
 
 
-        // axios.get('https://liveup.mybluemix.net/token').then(results => {
-        //     this.setState({ newtoken: results.data });
-        // });
+      
     }
 
 
@@ -223,9 +212,7 @@ class nameList extends Component {
                                 <h6>{this.props.data.country}</h6>
                             </div>
                             <Form className="col-lg-12">
-                           
                                 <a onClick={this.handleShow} className="btn-floating btn-medium waves-effect app-btn"><i className="material-icons">call</i></a>
-                              
                             </Form>
                         </div>
                         <div>
