@@ -43,7 +43,11 @@ class Dashboard extends Component {
         var elems = document.querySelectorAll('.modal');
         M.Modal.init(elems, { opacity: 0.5 });
     }
-
+    editmethod(data)
+    {
+        console.log(data)
+    }
+    
     /* Add new user*/
 
     
